@@ -1,0 +1,69 @@
+{
+  "channels": [
+    {
+      "title": "Dad's jokes",
+      "description": "Welcome to Dad's jokes channel. Always, you will find a new funny joke every day!!!",
+      "id": 5
+    },
+    {
+      "title": "Movie Reviews!",
+      "description": "Hello 👋 moviegoers, you are in the correct channel to give your opinion and review for all movies... drama, love, comedy, action, horror, etc.",
+      "id": 6
+    },
+    {
+      "title": "Soccer TV",
+      "description": "Champions League, Europe League, La Liga, Premier Ligue, Serie A, BundesLigue, and more, much more!",
+      "id": 7
+    },
+    {
+      "title": "From my farm to your Kitchen!",
+      "description": "Hi, my name is Doña Angela, and I am happy to share with you all my economics and healthy recipes... Welcome!",
+      "id": 8
+    },
+    {
+      "title": "My Comedy Family!",
+      "description": "Every day a new comedian is coming to the stage and performs their work... so, just be ready for tons of laughters!",
+      "id": 9
+    },
+    {
+      "title": "News around the world!",
+      "description": "Every 30 minutes, we give you the most recently news... where, when, how, etc.",
+      "id": 10
+    },
+    {
+      "title": "Sport Channel",
+      "description": "You will watch the best matches of baseball, american football, soccer, basketball, gymnastics, volleyball, golf, tenis, F1, karate, and more!",
+      "id": 11
+    },
+    {
+      "title": "80's cartoons",
+      "description": "Hi everyone... come, take a seat and enjoy the most memorable cartoons from your childhood!",
+      "id": 12
+    },
+    {
+      "title": "Rock Music!",
+      "description": "Videos, Interviews, Vlogs, Stories, Curious info, Events, Epic Shows, Albums and Songs of the best Rock music bands in all languages and all ages... just here in Rock Music channel!",
+      "id": 13
+    },
+    {
+      "title": "VideoGames and more!",
+      "description": "Hi VideoGamers, all day, 24 hours, 7 days a week, 365 days a year streaming games with the best players. Also we stream all kind of tournaments and challenges here and there!",
+      "id": 14
+    },
+    {
+      "title": "My Friends",
+      "description": "This is a private channel. Subscribe if you want to watch the content!",
+      "id": 15
+    },
+    {
+      "title": "I <3 Series",
+      "description": "Series 24hours... kabum!",
+      "id": 16
+    },
+    {
+      "title": "Chinese Conversation Club",
+      "description": "This channel is dedicated to teach Chinese as second language for all foreigners.",
+      "id": 17
+    }
+  ]
+}
