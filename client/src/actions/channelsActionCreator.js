@@ -46,12 +46,13 @@ export const fetchChannelActionCreator = id => async (dispatch, getState) => {
 };
 
 export const createChannelActionCreator = body => async (dispatch, getState) => {
+  const {creatorId} = getState().auth;
   const response = await fetch(`${BE_API_URL}/channels`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify({...body, creatorId})
   });
   if (response.ok) {
     const jsonResp = await response.json();

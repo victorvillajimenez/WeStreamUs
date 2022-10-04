@@ -1,13 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Navigate} from 'react-router-dom';
 import {createChannelActionCreator} from '../../actions/channelsActionCreator';
 import Form from './Form';
+import Loading from '../shared/Loading';
 
-const Create = ({createChannel}) => {
+const Create = ({isSignedIn, createChannel}) => {
+
   const onSubmit = (formValues) => {
     createChannel(formValues);
   };
 
+  if (isSignedIn === false) {
+    return <Navigate to='/' replace />;
+  }
+  if (isSignedIn === null) {
+    return <Loading />;
+  }
   return (
     <>
       <div
@@ -26,6 +35,12 @@ const Create = ({createChannel}) => {
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isSignedIn: state.auth.isSignedIn
+  };
+};
+
+export default connect(mapStateToProps, {
   createChannel: createChannelActionCreator
 })(Create);

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchChannelsActionCreator} from '../../actions/channelsActionCreator';
 
-const List = ({channels, fetchChannels}) => {
+const List = ({channels, fetchChannels, currentUserId, isSignedIn}) => {
   useEffect(() => {
     fetchChannels();
   }, []);
@@ -20,18 +20,20 @@ const List = ({channels, fetchChannels}) => {
         }}
       >
         <h3>Channels</h3>
-        <Link
-          to='/channels/new'
-          style={{
-            padding: '.5rem',
-            border: '1px solid blue',
-            borderRadius: '4px',
-            textDecoration: 'none',
-            color: 'blue'
-          }}
-        >
-          Create a Channel
-        </Link>
+        {isSignedIn &&
+          <Link
+            to='/channels/new'
+            style={{
+              padding: '.5rem',
+              border: '1px solid blue',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              color: 'blue'
+            }}
+          >
+            Create a Channel
+          </Link>
+        }
       </div>
       <ul
         style={{
@@ -67,34 +69,36 @@ const List = ({channels, fetchChannels}) => {
               </h5>
               <p>{channel.description}</p>
             </div>
-            <div>
-              <Link
-                style={{
-                  margin: '.5rem',
-                  padding: '.5rem',
-                  border: '1px solid blue',
-                  borderRadius: '4px',
-                  textDecoration: 'none',
-                  color: 'blue'
-                }}
-                to={`/channels/${channel.id}/edit`}
-              >
-                Edit
-              </Link>
-              <Link
-                style={{
-                  margin: '.5rem',
-                  padding: '.5rem',
-                  border: '1px solid blue',
-                  borderRadius: '4px',
-                  textDecoration: 'none',
-                  color: 'blue'
-                }}
-                to={`/channels/${channel.id}/delete`}
-              >
-                Delete
-              </Link>
-            </div>
+            {currentUserId === channel.creatorId &&
+              <div>
+                <Link
+                  style={{
+                    margin: '.5rem',
+                    padding: '.5rem',
+                    border: '1px solid blue',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: 'blue'
+                  }}
+                  to={`/channels/${channel.id}/edit`}
+                >
+                  Edit
+                </Link>
+                <Link
+                  style={{
+                    margin: '.5rem',
+                    padding: '.5rem',
+                    border: '1px solid blue',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    color: 'blue'
+                  }}
+                  to={`/channels/${channel.id}/delete`}
+                >
+                  Delete
+                </Link>
+              </div>
+            }
           </li>
         ))}
       </ul>
@@ -104,7 +108,9 @@ const List = ({channels, fetchChannels}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    channels: Object.values(state.channels)
+    channels: Object.values(state.channels),
+    currentUserId: state.auth.creatorId,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

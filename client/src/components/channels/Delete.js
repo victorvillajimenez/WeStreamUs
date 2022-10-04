@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {useParams, useNavigate, Link} from 'react-router-dom';
+import {useParams, useNavigate, Link, Navigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   fetchChannelActionCreator as fetchChannel,
   deleteChannelActionCreator as deleteChannel
 } from '../../actions/channelsActionCreator';
 import Modal from '../shared/Modal';
+import Loading from '../shared/Loading';
 
 const Delete = () => {
   const {id} = useParams();
@@ -13,7 +14,9 @@ const Delete = () => {
 
   const dispatch = useDispatch();
   const selectData = useSelector(state => ({
-    channel: state.channels[id]
+    channel: state.channels[id],
+    isSignedIn: state.auth.isSignedIn,
+    currentUserId: state.auth.creatorId
   }));
 
   const onDelete = () => {
@@ -28,7 +31,7 @@ const Delete = () => {
     dispatch(fetchChannel(id))
   }, [dispatch]);
 
-  const {channel} = selectData;
+  const {channel, isSignedIn, currentUserId} = selectData;
 
   const renderHeader = () => {
     return (
@@ -85,6 +88,16 @@ const Delete = () => {
     );
   };
 
+  if (isSignedIn === false) {
+    return <Navigate to='/' replace />;
+  }
+  if (isSignedIn === null) {
+    return <Loading />;
+  }
+  const cannotDelete = isSignedIn && channel && channel.creatorId !== currentUserId;
+  if (cannotDelete) {
+    return <Navigate to={`/channels/${channel.id}`} replace />;
+  }
   return (
     <div
       style={{
